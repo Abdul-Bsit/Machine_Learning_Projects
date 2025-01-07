@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link
+    rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Google Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap">
+    <link rel="stylesheet" href="/static/About.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    
+    #result {
+        margin-top: 20px;
+    }
+    h1{
+        font-size: 62px;
+    }
+
+    h3{
+        font-size: 21px;
+    }
+    .form-control {
+        width: 630px; /* Adjust this value as needed */
+        margin-left: 240px;
+        border-radius: 17px;
+    }
+
+    .btn-primary {
+        border-radius: 10px; /* Border radius */
+        transition: background-color 0.4s ease; /* Smooth transition for background color */
+    }
+
+    /* Hover effect */
+    .btn-primary:hover {
+        background-color: #8D53FC; /* Change background color on hover (blue) */
+        color: #fff; /* Change text color on hover to white */
+    }
+
+
+
+/* Style for Contact Us section */
+section {
+  background-color: #f9f9f9;
+}
+
+/* Center align text inside row */
+.row {
+  text-align: center;
+}
+/* 
+
+/* Style for form input fields */
+input[type="text"],
+textarea {
+  width: 50%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 19px;
+  box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+/* Style for submit button */
+input[type="submit"] {
+  background-color: #007BFF;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 7%;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect on submit button */
+input[type="submit"]:hover {
+  background-color:#8D53FC;
+}
+
+/* Responsive design using media queries */
+@media (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+  input[type="text"],
+  textarea,
+  input[type="submit"] {
+    width: 100%;
+  }
+}
+</style>
+<body>
+            <header>
+            <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+              <div class="container">
+                <a class="navbar-brand" rel="nofollow" target="_blank"  style="text-transform: uppercase; color: white;"> Sentiment Analysis</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+          
+                  <ul class="navbar-nav ml-auto">
+          
+                    <li class="nav-item active">
+                      <a class="nav-link" href="http://127.0.0.1:5000/">Home
+                        <span class="sr-only">(current)</span>
+                      </a>
+                    </li>
+          
+                    <li class="nav-item">
+                      <a class="nav-link" href="http://127.0.0.1:5000/about">About</a>
+                    </li>
+					<li class="nav-item">
+						<a class="nav-link" href="http://127.0.0.1:5000/c">Contact</a>
+					  </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </div>
+          <br><br>
+        <main>
+
+          <section>
+            <div class="row">
+              <h1>Contact Us</h1>
+            </div>
+			<!-- <div class="container"> -->
+				  <input type="text" id="fname" name="firstname" placeholder="Your name..">
+				  <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+				  <input type="text" id="lname" name="lastname" placeholder="Your Email Address..">
+				  <textarea id="subject" name="subject" placeholder="Write something.." style="height:100px"></textarea>
+				  <br>
+				  <input type="submit" value="Submit">
+			  </div>
+          </section>
+          <div class="footer-basic">
+            <footer>
+                <div class="social"><a href="#"><i class="icon ion-social-youtube"></i></a><a href="#"><i class="icon ion-social-linkedin"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#">Home</a></li>
+                    <li class="list-inline-item"><a href="#">Contact</a></li>
+                    <li class="list-inline-item"><a href="#">About</a></li>
+                </ul>
+				<p class="copyright">Sentiment Analysis </p>
+            </footer>
+        </main>
+            <!-- Bootstrap JS and dependencies -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

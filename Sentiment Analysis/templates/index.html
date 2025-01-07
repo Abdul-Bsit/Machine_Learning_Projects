@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-image: url();
+    }
+
+    #result {
+        margin-top: 20px;
+    }
+    h1 {
+        font-size: 62px;
+    }
+
+    h3 {
+        font-size: 21px;
+    }
+    .form-control {
+        width: 630px; /* Adjust this value as needed */
+        margin-left: 240px;
+        border-radius: 17px;
+    }
+
+    .btn-primary {
+        border-radius: 10px; /* Border radius */
+        transition: background-color 0.4s ease; /* Smooth transition for background color */
+    }
+
+    /* Hover effect */
+    .btn-primary:hover {
+        background-color: #8D53FC; /* Change background color on hover (blue) */
+        color: #fff; /* Change text color on hover to white */
+    }
+
+
+    .form-control {
+    resize: both; /* Allow resizing in both directions */
+    overflow: auto; /* Add scrollbars when necessary */
+  }
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+        <div class="container">
+            <a class="navbar-brand" rel="nofollow" target="_blank" style="text-transform: uppercase; color: white;" href="/"> Sentiment Analysis</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="http://127.0.0.1:5000/">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://127.0.0.1:5000/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://127.0.0.1:5000/contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header><br>
+        <h1>Sentiment Analysis</h1>
+        <h3>On the basis of Text Emoticons and Acronyms</h3>
+    </header><br>&nbsp;
+    <br>
+    <span><img src='/static/icons/positive.png'></span>
+    <span><img src='/static/icons/negative.png'></span>
+    <main>
+        <br>
+        <div class="container mt-4">
+            <form action="/" method="POST" class="mb-4" enctype="multipart/form-data">
+              <div class="form-group">
+                <input type="file" style="margin-left: 250px;;" class="form-control-file" id="file" name="file" accept=".txt">
+            </div>
+                <div class="form-group">
+                  <textarea class="form-control" id="text" name="text" placeholder="Type your text here" rows="4" cols="50"></textarea>
+
+                </div>
+                <div class="form-group">
+                    <label for="model">Select Model:</label>
+                    <select id="model" name="model" class="form-control">
+                      <option value="SVM" {% if selected_model == "SVM" %}selected{% endif %}>SVM</option>
+                      <option value="BERT" {% if selected_model == "BERT" %}selected{% endif %}>BERT</option>
+                    </select>
+                  </div>
+                <br>
+                <button type="submit" class="btn btn-primary">Analyze Sentiment</button>
+            </form>
+            {% if sentiment %}
+                <div id="result">
+                    <h2>Sentiment Result</h2>
+                    <p><strong>Text:</strong> {{ text }}</p>
+                    <p><strong>Sentiment:</strong> 
+                        <span style="color: {% if sentiment == 'Positive' %}green{% else %}red{% endif %}; font-size: {% if sentiment == 'Positive' %}24px{% else %}20px{% endif %};">
+                            {{ sentiment }}
+                        </span>
+                    </p>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+    <br>&nbsp;<br>
+    <div class="footer-basic">
+        <footer>
+            <div class="social">
+                <a href="#"><i class="icon ion-social-youtube"></i></a>
+                <a href="#"><i class="icon ion-social-linkedin"></i></a>
+                <a href="#"><i class="icon ion-social-twitter"></i></a>
+                <a href="#"><i class="icon ion-social-facebook"></i></a>
+            </div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item"><a href="#">Contact</a></li>
+                <li class="list-inline-item"><a href="#">About</a></li>
+            </ul>
+            <p class="copyright">Sentiment Analysis</p>
+        </footer>
+    </div>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        (function() {
+            var $curve = document.getElementById("curve");
+            var last_known_scroll_position = 0;
+            var defaultCurveValue = 350;
+            var curveRate = 3;
+            var ticking = false;
+            var curveValue;
+
+            function scrollEvent(scrollPos) {
+                if (scrollPos >= 0 && scrollPos < defaultCurveValue) {
+                    curveValue = defaultCurveValue - parseFloat(scrollPos / curveRate);
+                    $curve.setAttribute("d", "M 800 300 Q 400 " + curveValue + " 0 300 L 0 0 L 800 0 L 800 300 Z");
+                }
+            }
+
+            window.addEventListener("scroll", function(e) {
+                last_known_scroll_position = window.scrollY;
+
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        scrollEvent(last_known_scroll_position);
+                        ticking = false;
+                    });
+                }
+
+                ticking = true;
+            });
+        })();
+    </script>
+</body>
+</html>

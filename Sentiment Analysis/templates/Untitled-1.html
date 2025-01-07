@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            background-image: url('/static/main.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px; /* Adjusted height */
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+            box-sizing: border-box; /* Ensures padding is included in width */
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .header-link {
+            color: #333;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        .header-link:hover {
+            color: #007bff;
+        }
+        .logo {
+            text-align: right;
+            margin-top: 20px;
+        }
+        .logo img {
+            max-width: 100px;
+            height: auto;
+        }
+        @media (min-width: 576px) {
+            .form-control1 {
+                max-width: 490px; /* Adjust maximum width */
+                margin: 0 auto; /* Center the form */
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <h1>Sentiment Analysis</h1>
+        </div>
+        <div class="header-links">
+            <a href="#" class="header-link">Home</a>
+            <a href="#" class="header-link">About</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <form action="/" method="post">
+        <textarea name="text" placeholder="Enter tweet text..." required class="form-control1"></textarea>
+        <button type="submit">Predict Sentiment</button>
+    </form>
+</div>
+
+<!-- Bootstrap JS and jQuery (optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+        crossorigin="anonymous">
+    <title>Sentiment Analysis System</title>
+</head>
+
+<style>
+    body {
+        background-image: url('/static/main.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .form-control1 {
+        border-radius: 10px;
+        padding: 5px;
+        border: 0.5px solid black; /* Specify solid border */
+        width: 490px;
+    }
+
+
+    /* Style for file input */
+    #fileInputContainer {
+        text-align: center; /* Center the file input */
+        margin-top: 10px; /* Add margin above the file input */
+    }
+
+    #fileInputLabel {
+        display: block; /* Ensure label is displayed as block element */
+        margin-bottom: 5px; /* Add spacing below the label */
+    }
+
+    #csvFileInput {
+        display: inline-block; /* Ensure input is displayed inline */
+        width: 80%; /* Use percentage width for responsiveness */
+        max-width: 400px; /* Set maximum width to limit expansion */
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar"
+        data-aos="fade-down" data-aos-delay="500">
+        <div class="container">
+            <a class="navbar-brand" href="http://127.0.0.1:5000/">Home</a>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="http://127.0.0.1:5000/ana" class="nav-link">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="ftco-cover" id="section-home">
+        <div class="container">
+            <div class="row align-items-center ftco-vh-100">
+                <div class="col-md-7">
+                    <h1 class="ftco-heading mb-3" data-aos="fade-up" data-aos-delay="500">Sentiment Analysis</h1>
+                    <h2 class="h5 ftco-subheading mb-5" data-aos="fade-up" data-aos-delay="600">Categorises tweet under
+                        Positive, Neutral or Negative</h2>
+                    <div class="row">
+                        <div class="box counter-left md-5 col-2" data-aos="fade-up" data-aos-delay="700">
+                            <img src='/static/icons/positive.png'>
+                        </div>
+                        <div class="box counter-left md-5 col-2" data-aos="fade-up" data-aos-delay="700">
+                            <img src='/static/icons/neutral.png'>
+                        </div>
+                        <div class="box counter-left md-5 col-2" data-aos="fade-up" data-aos-delay="700">
+                            <img src='/static/icons/negative.png'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br><br><br>
+    
+    <section>
+        <div class="tt" style="margin-left:-340px;">
+            
+            <!-- <div class="container"> -->
+                <form action="/" method="post">
+                    <textarea name="text" placeholder="Enter tweet text..." required class="form-control1"></textarea>
+                    <button type="submit">Predict Sentiment</button>
+                </form> 
+        </div>
+    </section>
+
+    <br>
+
+    <script>
+        function analyzeSentiment() {
+            const inputSentence = document.getElementById('inputSentence').value;
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/analyze', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        updateSentimentProgressBar(response);
+                    } else {
+                        console.error('Error:', xhr.status);
+                    }
+                }
+            };
+            const requestBody = JSON.stringify({ sentence: inputSentence });
+            xhr.send(requestBody);
+        }
+
+        function updateSentimentProgressBar(sentiment) {
+            const positiveProgressBar = document.getElementById('positiveProgressBar');
+            const negativeProgressBar = document.getElementById('negativeProgressBar');
+
+            positiveProgressBar.style.width = sentiment.positive_percentage + '%';
+            positiveProgressBar.setAttribute('aria-valuenow', sentiment.positive_percentage);
+
+            negativeProgressBar.style.width = sentiment.negative_percentage + '%';
+            negativeProgressBar.setAttribute('aria-valuenow', sentiment.negative_percentage);
+        }
+    </script>
+</body>
+
+</html>
+
+
